@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ho'oponopono in 4 Steps — Pono Whisper</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-light: #132236;
+    --gold: #C9A84C;
+    --gold-light: #e8c96a;
+    --white: #ffffff;
+    --off-white: #F9F8F4;
+    --text-dark: #1A1A1A;
+    --text-muted: #666;
+    --green-border: #2e7d52;
+    --green-bg: #f0f7f4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    background: var(--white);
+    color: var(--text-dark);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 2.5rem auto 0;
+    opacity: 0.5;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ─── FAMILIAR ─── */
+  .familiar { background: var(--off-white); }
+  .familiar .section-title { color: var(--text-dark); }
+  .familiar .section-sub { color: var(--text-muted); }
+
+  .familiar-intro {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .familiar-list {
+    list-style: none;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .familiar-list li {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    padding: 0.75rem 0 0.75rem 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: relative;
+  }
+
+  .familiar-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0.5rem;
+    color: var(--gold);
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .familiar-callout {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    padding: 1.5rem 2rem;
+    border-radius: 0 12px 12px 0;
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    font-style: italic;
+  }
+
+  .familiar-note {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .familiar-note strong { color: var(--text-dark); }
+
+  /* ─── TRUTH ─── */
+  .truth { background: var(--navy); }
+  .truth .section-title { color: var(--gold); }
+  .truth .section-sub { color: rgba(255,255,255,0.7); }
+
+  .truth-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .truth-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .truth-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .truth-item p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+  }
+
+  .truth-closing {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--white);
+    max-width: 620px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 2rem;
+  }
+
+  /* ─── SOURCE ─── */
+  .source { background: var(--white); }
+  .source .section-title { color: var(--text-dark); }
+  .source .section-sub { color: var(--text-muted); }
+
+  .source-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.9;
+  }
+
+  .source-text p { margin-bottom: 1.25rem; }
+
+  .source-text strong { color: var(--navy); }
+
+  .source-highlight {
+    background: var(--off-white);
+    border-left: 4px solid var(--gold);
+    padding: 1.25rem 1.75rem;
+    border-radius: 0 12px 12px 0;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-dark);
+  }
+
+  /* ─── STEPS ─── */
+  .steps { background: var(--off-white); }
+  .steps .section-title { color: var(--text-dark); }
+  .steps .section-sub { color: var(--text-muted); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid #e8e8e8;
+    border-top: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .step-number {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--navy); }
+  .testimonials .section-title { color: var(--gold); }
+  .testimonials .section-sub { color: rgba(255,255,255,0.7); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing { background: var(--off-white); }
+  .pricing .section-title { color: var(--text-dark); }
+  .pricing .section-sub { color: var(--text-muted); }
+
+  .pricing-card {
+    background: var(--white);
+    border: 1px solid #e8e8e8;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  }
+
+  .pricing-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing-period {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .pricing-reframe {
+    font-size: 0.95rem;
+    color: #999;
+    font-style: italic;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .pricing-bonus {
+    background: #f9f5ec;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .pricing-guarantee {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .pricing-ps {
+    font-size: 0.95rem;
+    color: #999;
+    font-style: italic;
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+
+  /* ─── FOR WHO ─── */
+  .for-who { background: var(--navy); }
+  .for-who .section-title { color: var(--gold); }
+
+  .for-who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .for-who-card {
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .card-yes {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.35);
+  }
+
+  .card-no {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .card-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-title-yes { color: var(--gold); }
+  .card-title-no { color: #aaa; }
+
+  .card-item {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-item-yes { color: rgba(255,255,255,0.85); }
+  .card-item-no { color: #aaa; }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final { background: var(--navy); border-top: 1px solid rgba(201,168,76,0.2); }
+
+  .cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-guarantee-line {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 2rem 0;
+  }
+
+  .cta-closing {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+  }
+
+  .cta-aloha {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #07111c;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+  /* ─── PROFILE PHOTO ─── */
+  .profile-photo-wrap {
+    text-align: center;
+    margin-bottom: -2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .profile-photo-wrap img {
+    width: 280px;
+    height: 313px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 16px;
+    border: 4px solid var(--gold);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 12px;
+    border: 2px solid rgba(201,168,76,0.3);
+  }
+
+  .gallery-caption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .gallery { grid-template-columns: 1fr; }
+    .profile-photo-wrap img { width: 220px; height: 246px; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 3.5rem 1.25rem; }
+    .pricing-card { padding: 2rem 1.25rem; }
+    .pricing-amount { font-size: 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Pono Whisper · Ho'oponopono</p>
+    <h1>What if Ho'oponopono isn't working for you… because <em>no one taught you the real thing?</em></h1>
+    <p class="hero-sub">The authentic Hawaiian practice that actually transforms your life — in 4 clear, practical steps</p>
+    <a href="https://pay.hotmart.com/V104412584Q?checkoutMode=10" class="btn">YES — I'M READY TO TRANSFORM</a>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- PROFILE PHOTO -->
+<div class="profile-photo-wrap" style="background: var(--off-white); padding-top: 3rem;">
+  <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/PonoWhisperpic.jpg" alt="Pono Whisper — Lucas Radin">
+</div>
+
+<!-- DOES THIS SOUND FAMILIAR -->
+<section class="familiar">
+  <div class="container">
+    <h2 class="section-title">Does any of this sound familiar?</h2>
+    <p class="section-sub" style="color: var(--text-muted);">You've repeated the phrases. You've tried to forgive. You've done your best.</p>
+    <ul class="familiar-list">
+      <li>You repeat the 4 phrases — but nothing really shifts</li>
+      <li>Life still feels like an uphill battle, no matter how hard you try</li>
+      <li>You keep cycling through the same emotional patterns, relationships, or financial struggles</li>
+      <li>There are moments of peace… but something underneath still feels empty</li>
+      <li>You wonder: <em>"Am I even doing this right?"</em></li>
+    </ul>
+    <div class="familiar-callout">"What am I doing wrong if they told me I just need to repeat 4 phrases?"</div>
+    <p class="familiar-note"><strong>You're not alone. And it's not your fault.</strong><br>The version of Ho'oponopono that went viral on the internet is just a tiny fragment of a much deeper wisdom.</p>
+  </div>
+</section>
+
+<!-- THE TRUTH -->
+<section class="truth">
+  <div class="container">
+    <h2 class="section-title">The truth about Ho'oponopono</h2>
+    <p class="section-sub">Most people learned Ho'oponopono as four phrases to repeat. But the authentic Hawaiian practice goes far deeper.</p>
+    <div class="truth-grid">
+      <div class="truth-item">
+        <span class="truth-icon">🧠</span>
+        <p>How unconscious memories are literally recreating your reality right now</p>
+      </div>
+      <div class="truth-item">
+        <span class="truth-icon">🌊</span>
+        <p>How to actually <em>clean</em> those memories — not just recite words</p>
+      </div>
+      <div class="truth-item">
+        <span class="truth-icon">🌺</span>
+        <p>How to reconnect with your Inner Family: Aumakua, Uhane and Unihipili</p>
+      </div>
+      <div class="truth-item">
+        <span class="truth-icon">✨</span>
+        <p>How to access the Zero State — the place of pure peace, clarity and divine inspiration</p>
+      </div>
+    </div>
+    <p class="truth-closing">"When you understand this, Ho'oponopono stops being a mantra and becomes a living experience of transformation."</p>
+  </div>
+</section>
+
+<!-- SOURCE -->
+<section class="source">
+  <div class="container">
+    <h2 class="section-title">I went straight to the source</h2>
+    <div class="source-text">
+      <p>After years studying Ho'oponopono through books and courses, I felt something essential was missing.</p>
+      <p>So I traveled to <strong>Hawaii</strong> to learn directly from the people who truly carry this knowledge.</p>
+      <p>I was initiated by <strong>Stewart Blackburn</strong>, Senior Teacher of Huna International for over 25 years and close friend of Morrnah Simeona — the woman who brought modern Ho'oponopono to the world.</p>
+      <p>I also began serving on the team of <strong>The Foundation of I</strong> — the organization created by Morrnah N. Simeona herself.</p>
+      <div class="source-highlight">What I discovered wasn't just a technique. It was a complete path of inner transformation — and I've distilled it into 4 clear, practical steps so you can actually live it.</div>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Waialea.jpeg" alt="Waialea Craven X and Omaka O Kala">
+          <span class="gallery-caption">Waialea Craven X and Omaka O Kala<br>(from the Foundation of I)</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Stewart.jpeg" alt="Stewart Blackburn">
+          <span class="gallery-caption">Stewart Blackburn<br>(Senior Professor Huna)</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Serge.jpeg" alt="Serge K. King">
+          <span class="gallery-caption">Serge K. King<br>(Coder of Huna Philosophy)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 STEPS -->
+<section class="steps">
+  <div class="container">
+    <h2 class="section-title">What you'll learn in Ho'oponopono in 4 Steps</h2>
+    <p class="section-sub" style="color: var(--text-muted);">A complete, practical path to the authentic Hawaiian practice</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">Step 1</div>
+        <div class="step-title">The Real Foundation</div>
+        <div class="step-desc">The true origin of Ho'oponopono, what 100% responsibility really means without guilt, and how unconscious memories are shaping your life right now</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">Step 2</div>
+        <div class="step-title">The Power of the 4 Phrases</div>
+        <div class="step-desc">The deep meaning behind each phrase, how to make a real cleaning petition, and the difference between repeating words and actually purifying memories</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">Step 3</div>
+        <div class="step-title">Your Inner Family</div>
+        <div class="step-desc">A guided meditation to reconnect with Aumakua, Uhane and Unihipili — the three dimensions of your identity that make true transformation possible</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">Step 4</div>
+        <div class="step-title">Living from Zero</div>
+        <div class="step-desc">What the Zero State really feels like, how to recognize divine inspiration, and how to apply Ho'oponopono to money, relationships, purpose — and what to do when old memories come back strong</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Real people. Real shifts.</h2>
+    <p class="section-sub">See what people are experiencing after learning the true Ho'oponopono</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-text">"I used to lose it completely in traffic — screaming, honking. After a few months practicing Ho'oponopono, something changed. My husband said: six cars cut you off and you didn't react at all. I hadn't even noticed. I finally found peace inside myself."</div>
+        <div class="testimonial-author">— Rosangela</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"Two legal cases that had been frozen for years were suddenly resolved after I started practicing."</div>
+        <div class="testimonial-author">— Marcos</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"I had practiced Ho'oponopono for years. But only after understanding real memory purification did I see results. I finally had the courage to quit my job and follow my dream. Things began to flow in an incredible way."</div>
+        <div class="testimonial-author">— Gabriela</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"My relationship with my daughter was very difficult after my divorce. After deep cleaning work, something shifted profoundly. On her last visit, she asked if she could come live with me."</div>
+        <div class="testimonial-author">— Silvia</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"In just five days I felt a lightness I hadn't known in years. The tension in my relationships began to dissolve naturally. Today I feel connected to my purpose."</div>
+        <div class="testimonial-author">— Juliana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <h2 class="section-title">Your investment</h2>
+    <p class="section-sub" style="color: var(--text-muted);">Everything you need to begin living the authentic Ho'oponopono</p>
+    <div class="pricing-card">
+      <div class="pricing-amount">$57</div>
+      <div class="pricing-period">One-time payment &nbsp;·&nbsp; Lifetime access</div>
+      <div class="pricing-reframe">Less than a dinner out in the US — but while a meal is forgotten by morning, this practice stays with you for life.</div>
+      <div class="pricing-bonus">🎁 <strong>Exclusive Bonus: Sacred Cleaning Audio</strong><br>Every student receives a powerful guided Ho'oponopono cleaning audio — specially recorded to help you go deeper into the Zero State and release blocks between sessions. Yours free when you join today.</div>
+      <div class="pricing-guarantee">🛡️ <strong>7-Day Unconditional Guarantee</strong><br>Try the full course for 7 days. If you don't feel any shift at all, we return 100% of your investment. No questions. No hassle.</div>
+      <a href="https://pay.hotmart.com/V104412584Q?checkoutMode=10" class="btn" style="display: block; margin-bottom: 1rem;">YES — I'M READY TO TRANSFORM</a>
+      <p class="pricing-ps">Ho'oponopono found you for a reason. Don't leave without discovering if this is your path. Try it completely risk-free — if it doesn't resonate, we return it with love.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="for-who">
+  <div class="container">
+    <h2 class="section-title">Is this course for you?</h2>
+    <p class="section-sub" style="color: rgba(255,255,255,0.6); margin-bottom: 3rem;">Be honest with yourself.</p>
+    <div class="for-who-grid">
+      <div class="for-who-card card-yes">
+        <div class="card-title card-title-yes">✓ This IS for you if...</div>
+        <div class="card-item card-item-yes">🌿 You've tried Ho'oponopono but haven't seen real results</div>
+        <div class="card-item card-item-yes">🌿 You feel stuck in repeating patterns — in relationships, money or purpose</div>
+        <div class="card-item card-item-yes">🌿 You want to understand the authentic practice, not just the viral version</div>
+        <div class="card-item card-item-yes">🌿 You're ready to look inward and do the real work</div>
+        <div class="card-item card-item-yes">🌿 You want to live with peace, clarity and natural inspiration</div>
+        <div class="card-item card-item-yes">🌿 You feel disconnected from yourself and want to come home</div>
+      </div>
+      <div class="for-who-card card-no">
+        <div class="card-title card-title-no">✗ This is NOT for you if...</div>
+        <div class="card-item card-item-no">🚫 You're looking for a magic fix without inner transformation</div>
+        <div class="card-item card-item-no">🚫 You believe repeating phrases automatically solves everything</div>
+        <div class="card-item card-item-no">🚫 You're not willing to take honest responsibility for your inner world</div>
+        <div class="card-item card-item-no">🚫 You want someone else to do the inner work for you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-inner">
+      <h2 class="cta-title">It's time to stop repeating and start living.</h2>
+      <p class="cta-sub">Ho'oponopono found you for a reason. Don't leave without discovering if this is your path. Try it completely risk-free — if it doesn't resonate, we return it with love.</p>
+      <a href="https://pay.hotmart.com/V104412584Q?checkoutMode=10" class="btn">YES — I'M READY TO TRANSFORM</a>
+      <p class="cta-guarantee-line">🛡️ 7-day unconditional guarantee · One-time payment · Lifetime access</p>
+      <hr class="cta-divider">
+      <p class="cta-closing">You don't have to carry any burdens.<br>You can simply be and express who you truly are —<br>light, love and expansion.</p>
+      <p class="cta-aloha">Aloha 🌺</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Pono Whisper · <a href="mailto:ponowhisper@gmail.com">ponowhisper@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
