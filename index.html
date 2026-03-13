@@ -103,11 +103,7 @@
     opacity: 0.5;
   }
 
-  @media (max-width: 640px) {
-    .hero { min-height: 70vh; padding: 3rem 1.5rem; }
-    .hero-inner { margin-left: 0; text-align: center; }
-    .hero-divider { margin: 2.5rem auto 0; }
-  }
+  .btn {
     display: inline-block;
     background: var(--gold);
     color: var(--white);
@@ -123,6 +119,12 @@
   }
 
   .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  @media (max-width: 640px) {
+    .hero { min-height: 70vh; padding: 3rem 1.5rem; }
+    .hero-inner { margin-left: 0; text-align: center; }
+    .hero-divider { margin: 2.5rem auto 0; }
+  }
 
   /* ─── SECTION BASE ─── */
   section { padding: 5rem 1.5rem; }
