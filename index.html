@@ -551,40 +551,100 @@
     box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   }
 
-  /* ─── GALLERY ─── */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+  /* ─── CAROUSEL ─── */
+  .carousel {
     margin-top: 3rem;
+    position: relative;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .gallery-item {
+  .carousel-track {
+    overflow: hidden;
+    border-radius: 14px;
+    border: 2px solid rgba(201,168,76,0.3);
+  }
+
+  .carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
   }
 
-  .gallery-item img {
+  .carousel-slide img {
     width: 100%;
     aspect-ratio: 3/4;
     object-fit: cover;
     object-position: top;
-    border-radius: 12px;
-    border: 2px solid rgba(201,168,76,0.3);
+    display: block;
   }
 
-  .gallery-caption {
-    font-size: 0.9rem;
+  .carousel-caption {
+    background: var(--off-white);
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
     text-align: center;
     font-style: italic;
     line-height: 1.5;
   }
 
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .carousel-btn {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .carousel-btn:hover { background: var(--gold-light); transform: scale(1.08); }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .carousel-dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+
   @media (max-width: 640px) {
-    .gallery { grid-template-columns: 1fr; }
+    .carousel { max-width: 100%; }
     .profile-photo-wrap img { width: 220px; height: 246px; }
   }
   @media (max-width: 640px) {
@@ -666,23 +726,69 @@
       <p>I was initiated by <strong>Stewart Blackburn</strong>, Senior Teacher of Huna International for over 25 years and close friend of Morrnah Simeona — the woman who brought modern Ho'oponopono to the world.</p>
       <p>I also began serving on the team of <strong>The Foundation of I</strong> — the organization created by Morrnah N. Simeona herself.</p>
       <div class="source-highlight">What I discovered wasn't just a technique. It was a complete path of inner transformation — and I've distilled it into 4 clear, practical steps so you can actually live it.</div>
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Waialea.jpeg" alt="Waialea Craven X and Omaka O Kala">
-          <span class="gallery-caption">Waialea Craven X and Omaka O Kala<br>(from the Foundation of I)</span>
+
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slides" id="carouselSlides">
+            <div class="carousel-slide">
+              <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Waialea.jpeg" alt="Waialea Craven X and Omaka O Kala">
+              <div class="carousel-caption">Waialea Craven X and Omaka O Kala<br>(from the Foundation of I)</div>
+            </div>
+            <div class="carousel-slide">
+              <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Stewart.jpeg" alt="Stewart Blackburn">
+              <div class="carousel-caption">Stewart Blackburn<br>(Senior Professor Huna)</div>
+            </div>
+            <div class="carousel-slide">
+              <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Serge.jpeg" alt="Serge K. King">
+              <div class="carousel-caption">Serge K. King<br>(Coder of Huna Philosophy)</div>
+            </div>
+          </div>
         </div>
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Stewart.jpeg" alt="Stewart Blackburn">
-          <span class="gallery-caption">Stewart Blackburn<br>(Senior Professor Huna)</span>
-        </div>
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/ponowhisper/4steps/main/Serge.jpeg" alt="Serge K. King">
-          <span class="gallery-caption">Serge K. King<br>(Coder of Huna Philosophy)</span>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prevBtn">&#8592;</button>
+          <div class="carousel-dots">
+            <div class="carousel-dot active" onclick="goTo(0)"></div>
+            <div class="carousel-dot" onclick="goTo(1)"></div>
+            <div class="carousel-dot" onclick="goTo(2)"></div>
+          </div>
+          <button class="carousel-btn" id="nextBtn">&#8594;</button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  var current = 0;
+  var total = 3;
+  var slides = document.getElementById('carouselSlides');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var autoplay;
+
+  function goTo(n) {
+    current = (n + total) % total;
+    slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function startAutoplay() {
+    autoplay = setInterval(function() { goTo(current + 1); }, 4000);
+  }
+
+  function stopAutoplay() { clearInterval(autoplay); }
+
+  document.getElementById('prevBtn').addEventListener('click', function() {
+    stopAutoplay(); goTo(current - 1); startAutoplay();
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', function() {
+    stopAutoplay(); goTo(current + 1); startAutoplay();
+  });
+
+  startAutoplay();
+</script>
 
 <!-- 4 STEPS -->
 <section class="steps">
