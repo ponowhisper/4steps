@@ -95,7 +95,19 @@
     margin-right: auto;
   }
 
-  .btn {
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 2.5rem auto 0;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 640px) {
+    .hero { min-height: 70vh; padding: 3rem 1.5rem; }
+    .hero-inner { margin-left: 0; text-align: center; }
+    .hero-divider { margin: 2.5rem auto 0; }
+  }
     display: inline-block;
     background: var(--gold);
     color: var(--white);
@@ -112,18 +124,10 @@
 
   .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
 
-  .hero-divider {
-    width: 60px;
-    height: 2px;
-    background: var(--gold);
-    margin: 2.5rem auto 0;
-    opacity: 0.5;
-  }
-
   /* ─── SECTION BASE ─── */
   section { padding: 5rem 1.5rem; }
 
-  .container { max-width: 900px; margin: 0 auto; }
+  .container { max-width: 1200px; margin: 0 auto; }
 
   .section-title {
     font-family: 'Cormorant Garamond', serif;
@@ -138,7 +142,7 @@
     font-size: 1.05rem;
     text-align: center;
     margin-bottom: 3rem;
-    max-width: 620px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -158,7 +162,7 @@
 
   .familiar-list {
     list-style: none;
-    max-width: 620px;
+    max-width: 860px;
     margin: 0 auto 2.5rem;
   }
 
@@ -184,7 +188,7 @@
     border-left: 4px solid var(--gold);
     padding: 1.5rem 2rem;
     border-radius: 0 12px 12px 0;
-    max-width: 620px;
+    max-width: 860px;
     margin: 0 auto 2rem;
     font-size: 1.15rem;
     color: var(--text-dark);
@@ -195,7 +199,7 @@
     text-align: center;
     font-size: 1.1rem;
     color: var(--text-muted);
-    max-width: 580px;
+    max-width: 860px;
     margin: 0 auto;
   }
 
@@ -238,7 +242,7 @@
     font-size: 1.4rem;
     font-style: italic;
     color: var(--white);
-    max-width: 620px;
+    max-width: 860px;
     margin: 0 auto;
     border-top: 1px solid rgba(201,168,76,0.3);
     padding-top: 2rem;
@@ -250,7 +254,7 @@
   .source .section-sub { color: var(--text-muted); }
 
   .source-text {
-    max-width: 680px;
+    max-width: 900px;
     margin: 0 auto;
     font-size: 1.15rem;
     color: var(--text-dark);
@@ -472,7 +476,7 @@
   .cta-final { background: var(--navy); border-top: 1px solid rgba(201,168,76,0.2); }
 
   .cta-inner {
-    max-width: 680px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
   }
@@ -858,7 +862,7 @@
       <div class="pricing-reframe">Less than a dinner out in the US — but while a meal is forgotten by morning, this practice stays with you for life.</div>
       <div class="pricing-bonus">🎁 <strong>Exclusive Bonus: Sacred Cleaning Audio</strong><br>Every student receives a powerful guided Ho'oponopono cleaning audio — specially recorded to help you go deeper into the Zero State and release blocks between sessions. Yours free when you join today.</div>
       <div class="pricing-guarantee">🛡️ <strong>7-Day Unconditional Guarantee</strong><br>Try the full course for 7 days. If you don't feel any shift at all, we return 100% of your investment. No questions. No hassle.</div>
-      <a href="https://pay.hotmart.com/V104412584Q" class="btn" style="display: block; margin-bottom: 1rem;">YES — I'M READY TO TRANSFORM</a>
+      <a href="https://pay.hotmart.com/V104412584Q?checkoutMode=10" class="btn" style="display: block; margin-bottom: 1rem;">YES — I'M READY TO TRANSFORM</a>
       <p class="pricing-ps">Ho'oponopono found you for a reason. Don't leave without discovering if this is your path. Try it completely risk-free — if it doesn't resonate, we return it with love.</p>
     </div>
   </div>
@@ -896,7 +900,7 @@
     <div class="cta-inner">
       <h2 class="cta-title">It's time to stop repeating and start living.</h2>
       <p class="cta-sub">Ho'oponopono found you for a reason. Don't leave without discovering if this is your path. Try it completely risk-free — if it doesn't resonate, we return it with love.</p>
-      <a href="https://pay.hotmart.com/V104412584Q" class="btn">YES — I'M READY TO TRANSFORM</a>
+      <a href="https://pay.hotmart.com/V104412584Q?checkoutMode=10" class="btn">YES — I'M READY TO TRANSFORM</a>
       <p class="cta-guarantee-line">🛡️ 7-day unconditional guarantee · One-time payment · Lifetime access</p>
       <hr class="cta-divider">
       <p class="cta-closing">You don't have to carry any burdens.<br>You can simply be and express who you truly are —<br>light, love and expansion.</p>
