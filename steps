@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: transparent; }
+.steps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+.steps-title { font-size: 38px; font-weight: bold; text-align: center; color: #1A1A1A; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', Georgia, serif; }
+.steps-subtitle { font-size: 18px; color: #555; text-align: center; margin-bottom: 2rem; font-family: 'Lato', Arial, sans-serif; }
+.step-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.5rem; border-top: 3px solid #C9A84C; }
+.step-number { font-size: 18px; font-weight: bold; color: #C9A84C; margin-bottom: 8px; letter-spacing: 0.1em; font-family: 'Lato', Arial, sans-serif; }
+.step-title { font-size: 18px; font-weight: bold; color: #1A1A1A; margin-bottom: 10px; font-family: 'Raleway', Arial, sans-serif; }
+.step-desc { font-size: 18px; color: #555; line-height: 1.7; font-family: 'Lato', Arial, sans-serif; }
+@media (max-width: 600px) { .steps-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<p class="steps-title">What you'll learn in Ho'oponopono in 4 Steps</p>
+<p class="steps-subtitle">A complete, practical path to the authentic Hawaiian practice</p>
+<div class="steps-grid">
+  <div class="step-card">
+    <div class="step-number">STEP 1</div>
+    <div class="step-title">The Real Foundation</div>
+    <div class="step-desc">The true origin of Ho'oponopono, what 100% responsibility really means without guilt, and how unconscious memories are shaping your life right now</div>
+  </div>
+  <div class="step-card">
+    <div class="step-number">STEP 2</div>
+    <div class="step-title">The Power of the 4 Phrases</div>
+    <div class="step-desc">The deep meaning behind each phrase, how to make a real cleaning petition, and the difference between repeating words and actually purifying memories</div>
+  </div>
+  <div class="step-card">
+    <div class="step-number">STEP 3</div>
+    <div class="step-title">Your Inner Family</div>
+    <div class="step-desc">A guided meditation to reconnect with Aumakua, Uhane and Unihipili — the three dimensions of your identity that make true transformation possible</div>
+  </div>
+  <div class="step-card">
+    <div class="step-number">STEP 4</div>
+    <div class="step-title">Living from Zero</div>
+    <div class="step-desc">What the Zero State really feels like, how to recognize divine inspiration, and how to apply Ho'oponopono to money, relationships, purpose and what to do when old memories come back strong</div>
+  </div>
+</div>
+</body>
+</html>
